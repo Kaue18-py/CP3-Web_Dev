@@ -20,10 +20,12 @@ describe('App', () => {
   it('mostra as seções da home e os links de contato', () => {
     renderAt('/')
 
-    expect(screen.getByRole('region', { name: '> whoami' })).toBeInTheDocument()
-    expect(screen.getByRole('region', { name: '> ./focus --now' })).toBeInTheDocument()
-    expect(screen.getByRole('region', { name: '> cat ./stack.txt' })).toBeInTheDocument()
-    expect(screen.getByText('Nível 6 de 10')).toBeInTheDocument()
+    expect(screen.getByRole('region', { name: '> cat ~/.plan' })).toBeInTheDocument()
+    // a varredura nmap tem uma versão em texto para leitores de tela
+    expect(screen.getByText('Resultado da varredura em kaue.dev:')).toBeInTheDocument()
+    expect(
+      screen.getByText(/React · Tailwind — interfaces web \(uso em projetos\)/),
+    ).toBeInTheDocument()
 
     for (const name of ['LinkedIn', 'GitHub', 'Instagram']) {
       expect(screen.getByRole('link', { name })).toHaveAttribute('target', '_blank')
