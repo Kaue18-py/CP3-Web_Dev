@@ -9,6 +9,15 @@
       content="Portfólio de Kauê: desenvolvimento front-end e cibersegurança."
     />
     <title>Kauê | Portfólio</title>
+    <!-- Aplica o tema salvo antes do React carregar, para a página não piscar no tema errado -->
+    <script>
+      try {
+        if (localStorage.getItem('theme') !== 'light')
+          document.documentElement.classList.add('dark')
+      } catch {
+        document.documentElement.classList.add('dark')
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
