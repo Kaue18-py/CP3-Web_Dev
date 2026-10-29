@@ -17,6 +17,19 @@ describe('App', () => {
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Kauê')
   })
 
+  it('mostra as seções da home e os links de contato', () => {
+    renderAt('/')
+
+    expect(screen.getByRole('region', { name: '> whoami' })).toBeInTheDocument()
+    expect(screen.getByRole('region', { name: '> ./focus --now' })).toBeInTheDocument()
+    expect(screen.getByRole('region', { name: '> cat ./stack.txt' })).toBeInTheDocument()
+    expect(screen.getByText('Nível 6 de 10')).toBeInTheDocument()
+
+    for (const name of ['LinkedIn', 'GitHub', 'Instagram']) {
+      expect(screen.getByRole('link', { name })).toHaveAttribute('target', '_blank')
+    }
+  })
+
   it('mostra a página 404 em uma rota inexistente', async () => {
     renderAt('/rota-que-nao-existe')
 
