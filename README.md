@@ -39,7 +39,7 @@ Pré-requisito: Node.js 20 ou superior.
 git clone https://github.com/Kaue18-py/CP3-Web_Dev.git
 cd CP3-Web_Dev
 npm install
-cp .env.example .env   # preencha as variáveis
+cp .env.example .env = Variavel de exemplo
 npm run dev
 ```
 
