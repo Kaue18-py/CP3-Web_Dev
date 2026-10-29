@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react'
-
-function prefersReducedMotion() {
-  return window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
-}
+import { prefersReducedMotion } from '../utils/prefersReducedMotion'
 
 // Calcula o próximo passo: digita, pausa com a frase completa, apaga e passa para a próxima frase
 function nextStep({ index, length, deleting }, phrases) {
