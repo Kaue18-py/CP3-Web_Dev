@@ -66,6 +66,7 @@ src/
   services/    # acesso a APIs externas (GitHub, Supabase, EmailJS). Só funções, sem JSX
   hooks/       # hooks personalizados que ligam services ao React (useRepos, useAuth, useTheme)
   contexts/    # Context providers (ThemeContext, AuthContext)
+  data/        # conteúdo estático do site (bio, foco de estudos, stack, links)
   schemas/     # schemas Zod de validação
   utils/       # funções puras auxiliares (formatDate...)
   test/        # setup global dos testes

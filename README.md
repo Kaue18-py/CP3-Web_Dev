@@ -67,6 +67,7 @@ src/
   services/    # acesso às APIs (GitHub, Supabase, EmailJS)
   hooks/       # hooks personalizados que ligam os services aos componentes
   contexts/    # Context providers (tema, autenticação)
+  data/        # conteúdo pessoal do site (bio, stack, links)
   schemas/     # schemas de validação (Zod)
   utils/       # funções auxiliares
   test/        # setup dos testes
