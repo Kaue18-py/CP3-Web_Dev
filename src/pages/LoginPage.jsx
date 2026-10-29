@@ -1,6 +1,7 @@
 import { lazy, Suspense, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { ThemeToggle } from '../components/layout/ThemeToggle'
+import { AnonymousMask } from '../components/login/AnonymousMask'
 import { BootLog } from '../components/login/BootLog'
 import { Greeting } from '../components/login/Greeting'
 import { Button } from '../components/ui/Button'
@@ -49,6 +50,8 @@ export default function LoginPage() {
               )}
             </details>
           </Card>
+
+          <AnonymousMask className="mt-10" />
         </div>
       </main>
     </div>
