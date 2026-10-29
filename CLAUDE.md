@@ -57,3 +57,73 @@ src/
 - Todo dado vindo de API precisa tratar os estados de **carregamento**, **erro** e **lista vazia**.
 - Imagens: WebP/AVIF, `loading="lazy"`, `width`/`height` definidos (evita layout shift).
 - Dashboard e qualquer parte pesada são carregados com `React.lazy`, fora do bundle inicial.
+
+## Convenções de nomenclatura
+
+| Item                  | Padrão                                       | Exemplo                           |
+| --------------------- | -------------------------------------------- | --------------------------------- |
+| Componentes e páginas | PascalCase, arquivo `.jsx`                   | `ProjectCard.jsx`, `HomePage.jsx` |
+| Hooks                 | camelCase começando com `use`, arquivo `.js` | `useRepos.js`                     |
+| Services              | camelCase terminando em `Service`            | `githubService.js`                |
+| Contexts              | PascalCase terminando em `Context`           | `ThemeContext.jsx`                |
+| Schemas Zod           | camelCase terminando em `Schema`             | `contactSchema.js`                |
+| Constantes            | UPPER_SNAKE_CASE                             | `GITHUB_API_URL`                  |
+| Testes                | mesmo nome do arquivo testado + `.test`      | `ContactForm.test.jsx`            |
+| Variáveis de ambiente | prefixo `VITE_`                              | `VITE_SUPABASE_URL`               |
+
+- Um componente por arquivo. Páginas usam `export default` (necessário para `React.lazy`);
+  o restante usa export nomeado.
+- Código (variáveis, funções) em inglês; textos da interface, commits e documentação em português.
+
+## Branches (GitHub Flow)
+
+- `main` está sempre estável e publicada na Vercel.
+- Cada funcionalidade em uma branch criada a partir da `main`:
+  `feature/<nome>`, `fix/<nome>`, `chore/<nome>`, `docs/<nome>`, `test/<nome>`
+  (ex.: `feature/dashboard`, `feature/formulario-contato`).
+- A branch volta para a `main` por pull request.
+- Antes de começar uma tarefa, confira em que branch está. Se estiver na `main`, crie a branch certa.
+
+## Commits (Conventional Commits)
+
+Formato: `<tipo>: <descrição>`, em português, verbo no presente da 3ª pessoa, sem ponto final.
+
+| Tipo       | Uso                                         |
+| ---------- | ------------------------------------------- |
+| `feat`     | nova funcionalidade                         |
+| `fix`      | correção de bug                             |
+| `refactor` | mudança de código sem alterar comportamento |
+| `style`    | formatação, sem mudança de lógica           |
+| `test`     | testes                                      |
+| `docs`     | documentação                                |
+| `chore`    | configuração, dependências, build           |
+| `perf`     | melhoria de performance                     |
+
+Exemplos: `feat: adiciona validação do formulário de contato`, `fix: corrige rota 404 ao atualizar a página`.
+
+- Commits pequenos, um assunto por commit.
+- O commitlint (hook `commit-msg`) rejeita mensagens fora do padrão.
+- O hook `pre-commit` roda ESLint e Prettier nos arquivos alterados.
+
+## Comandos
+
+```bash
+npm run dev          # servidor de desenvolvimento
+npm run build        # build de produção
+npm run lint         # ESLint
+npm run format       # Prettier em todo o projeto
+```
+
+## Checklist de requisitos do CP3
+
+Antes de considerar uma funcionalidade pronta, confira se ela atende ao requisito correspondente:
+
+1. Rotas: `/projetos/:slug`, página 404, página de erro da API, refresh/link direto funcionando.
+2. Loading, erro e vazio em todo dado de API; skeleton nos cards; botão de envio bloqueado durante o envio.
+3. Projetos vindos da API do GitHub (descrição, linguagem, última atualização), com tratamento de rate limit.
+4. Formulário: erro específico por campo, envio por e-mail + gravação no Supabase, feedback de sucesso/erro.
+5. Dashboard protegido por login: mensagens (marcar como respondida) e seleção de projetos em destaque.
+6. Tema claro/escuro persistido no `localStorage`.
+7. Responsivo, componentes reaproveitados, identidade visual própria.
+8. Lighthouse mobile >= 80, imagens otimizadas e lazy, dashboard lazy, sem layout shift, cache do GitHub.
+9. Testes: no mínimo validação do formulário e bloqueio do dashboard sem login.
