@@ -30,6 +30,29 @@ Todas as regras abaixo são obrigatórias.
 
 Não adicionar biblioteca nova sem perguntar antes: cada escolha precisa ser justificada pelo autor.
 
+## Identidade visual
+
+Tema **terminal hacker, estilo red team / cyberpunk**. Use sempre as cores pelos tokens do tema
+(definidos em `src/index.css`), nunca cores fixas como `text-pink-500` ou `#ff2e88` no componente.
+
+| Token (classe Tailwind)          | Escuro    | Claro     | Uso                                  |
+| -------------------------------- | --------- | --------- | ------------------------------------ |
+| `background` (`bg-background`)   | `#0b0b12` | `#f5f5fa` | fundo da página                      |
+| `surface` (`bg-surface`)         | `#14141f` | `#ffffff` | cards, painéis                       |
+| `foreground` (`text-foreground`) | `#e6e6f0` | `#1a1a2e` | texto principal                      |
+| `muted` (`text-muted`)           | `#9a9ab3` | `#55556e` | texto secundário                     |
+| `primary` (`text-primary`)       | `#ff2e88` | `#c2185b` | destaque principal (magenta), botões |
+| `secondary` (`text-secondary`)   | `#00f0ff` | `#00727d` | destaque de apoio (ciano), links     |
+| `warning` (`text-warning`)       | `#ffd400` | `#8a5a00` | avisos                               |
+| `danger` (`text-danger`)         | `#ff5c5c` | `#c62828` | erros (ex.: validação do formulário) |
+| `line` (`border-line`)           | `#2a2a3d` | `#d9d9e6` | bordas                               |
+
+- Todas as combinações de texto passam no contraste WCAG AA (>= 4.5:1). Ao criar cor nova, confira o contraste.
+- Fonte: **JetBrains Mono** (auto-hospedada via `@fontsource-variable/jetbrains-mono`) em todo o site.
+- Linguagem visual de terminal: prompts (`$`, `>`), colchetes, cursor `█`, bordas finas, cantos pouco arredondados.
+- Único efeito animado: **digitação + cursor piscando** no topo da home. Toda animação respeita
+  `prefers-reduced-motion`. Não adicionar efeitos pesados (glitch, chuva Matrix, 3D) sem pedir.
+
 ## Estrutura de pastas
 
 ```
