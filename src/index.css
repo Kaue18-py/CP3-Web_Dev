@@ -1,3 +1,61 @@
 @import 'tailwindcss';
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+/* Cores do tema: o modo claro fica no :root e o escuro sobrescreve quando o <html> tem .dark */
+:root {
+  --background: #f5f5fa;
+  --surface: #ffffff;
+  --foreground: #1a1a2e;
+  --muted: #55556e;
+  --primary: #c2185b;
+  --secondary: #00727d;
+  --warning: #8a5a00;
+  --danger: #c62828;
+  --line: #d9d9e6;
+  color-scheme: light;
+}
+
+.dark {
+  --background: #0b0b12;
+  --surface: #14141f;
+  --foreground: #e6e6f0;
+  --muted: #9a9ab3;
+  --primary: #ff2e88;
+  --secondary: #00f0ff;
+  --warning: #ffd400;
+  --danger: #ff5c5c;
+  --line: #2a2a3d;
+  color-scheme: dark;
+}
+
+/* Transforma as variáveis em classes do Tailwind: bg-background, text-primary, border-line... */
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-line: var(--line);
+}
+
+@theme {
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-mono);
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  ::selection {
+    @apply bg-primary text-background;
+  }
+}
