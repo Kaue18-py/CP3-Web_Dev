@@ -8,6 +8,7 @@ import LoginPage from '../pages/LoginPage'
 const HomePage = lazy(() => import('../pages/HomePage'))
 const AboutPage = lazy(() => import('../pages/AboutPage'))
 const ProjectsPage = lazy(() => import('../pages/ProjectsPage'))
+const ContactPage = lazy(() => import('../pages/ContactPage'))
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'))
 
 export function AppRoutes() {
@@ -18,6 +19,7 @@ export function AppRoutes() {
         <Route path="/inicio" element={<HomePage />} />
         <Route path="/sobre" element={<AboutPage />} />
         <Route path="/projetos" element={<ProjectsPage />} />
+        <Route path="/contato" element={<ContactPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

@@ -15,6 +15,11 @@ export const NAV_ITEMS = [
     label: 'projetos',
     description: 'alvos encontrados: projetos puxados direto do GitHub',
   },
+  {
+    to: '/contato',
+    label: 'contato',
+    description: 'abrir um canal seguro e mandar uma mensagem',
+  },
 ]
 
 // Na página inicial o menu mostra todas as páginas, menos a própria

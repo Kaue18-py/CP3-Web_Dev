@@ -15,6 +15,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@emailjs/browser": "^5.0.3",
     "@fontsource-variable/jetbrains-mono": "^5.3.0",
     "@hookform/resolvers": "^6.0.2",
     "@tailwindcss/vite": "^4.3.3",
