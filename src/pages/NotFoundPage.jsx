@@ -8,12 +8,12 @@ export default function NotFoundPage() {
       <p className="text-muted">
         <span className="text-secondary">kaue@portfolio</span>:~$ cd {pathname}
       </p>
-      <h1 className="text-danger mt-2 text-3xl font-bold sm:text-5xl">404</h1>
+      <h1 className="mt-2 text-3xl font-bold text-danger sm:text-5xl">404</h1>
       <p className="mt-4">
         bash: cd: <span className="text-warning">{pathname}</span>: Arquivo ou diretório não
         encontrado
       </p>
-      <Link to="/" className="text-secondary mt-8 inline-block underline underline-offset-4">
+      <Link to="/" className="mt-8 inline-block text-secondary underline underline-offset-4">
         cd ~ (voltar para a home)
       </Link>
     </section>

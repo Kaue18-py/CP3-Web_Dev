@@ -7,7 +7,7 @@ export default function HomePage() {
       <h1 className="mt-2 text-3xl font-bold sm:text-5xl">
         <span className="text-primary">&gt;</span> Kaue
       </h1>
-      <p className="text-muted mt-4">Desenvolvedor front-end | cibersegurança</p>
+      <p className="mt-4 text-muted">Desenvolvedor front-end | cibersegurança</p>
     </section>
   )
 }

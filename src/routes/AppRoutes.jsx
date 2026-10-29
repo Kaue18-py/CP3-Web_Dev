@@ -7,7 +7,7 @@ const NotFoundPage = lazy(() => import('../pages/NotFoundPage'))
 
 export function AppRoutes() {
   return (
-    <Suspense fallback={<p className="text-muted px-4 py-16">carregando...</p>}>
+    <Suspense fallback={<p className="px-4 py-16 text-muted">carregando...</p>}>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={<NotFoundPage />} />
