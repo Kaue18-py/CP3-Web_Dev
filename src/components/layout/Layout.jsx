@@ -16,7 +16,7 @@ export function Layout() {
       <main id="conteudo" className="flex-1">
         {/* Header e Footer continuam na tela enquanto uma página lazy carrega */}
         <Suspense
-          fallback={<p className="mx-auto max-w-4xl px-4 py-16 text-muted">carregando...</p>}
+          fallback={<p className="mx-auto max-w-5xl px-4 py-16 text-muted">carregando...</p>}
         >
           <Outlet />
         </Suspense>

@@ -3,7 +3,7 @@ import { PROFILE, SOCIAL_LINKS } from '../../data/profile'
 export function Footer() {
   return (
     <footer className="border-t border-line">
-      <div className="mx-auto flex max-w-4xl flex-col gap-4 px-4 py-8 text-sm sm:flex-row sm:items-center sm:justify-between">
+      <div className="mx-auto flex max-w-5xl flex-col gap-4 px-4 py-8 text-sm sm:flex-row sm:items-center sm:justify-between">
         <nav aria-label="Redes sociais">
           <p className="text-muted">$ ./contato --links</p>
           <ul className="mt-2 flex flex-wrap gap-4">

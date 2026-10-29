@@ -4,7 +4,7 @@ export default function NotFoundPage() {
   const { pathname } = useLocation()
 
   return (
-    <section className="mx-auto max-w-4xl px-4 py-16">
+    <section className="mx-auto max-w-5xl px-4 py-16">
       <p className="text-muted">
         <span className="text-secondary">kaue@portfolio</span>:~$ cd {pathname}
       </p>
