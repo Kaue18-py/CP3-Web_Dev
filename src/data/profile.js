@@ -9,7 +9,7 @@ export const PROFILE = {
     'Comecei mexendo em computador ainda criança e nunca mais parei. Hoje curso Engenharia de Software na FIAP e uso cada trabalho da faculdade como desculpa para aprender uma ferramenta nova.',
     'Meu alvo é a cibersegurança. Acredito que, para proteger um sistema, primeiro é preciso saber construí-lo, por isso divido o tempo entre desenvolver e quebrar coisas em laboratório.',
   ],
-  studying: ['redes', 'criptografia', 'autenticação', 'linux'],
+  studying: ['criptografia', 'redes', 'autenticação'],
 }
 
 export const SOCIAL_LINKS = [
@@ -51,6 +51,5 @@ export const SCAN = {
       service: 'msf',
       version: 'Metasploit · Nmap — segurança ofensiva',
     },
-    { port: '22/tcp', state: 'filtered', service: 'ssh', version: 'Linux — laboratórios práticos' },
   ],
 }

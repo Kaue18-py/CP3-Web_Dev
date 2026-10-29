@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router'
 import App from './App'
 
@@ -11,25 +12,41 @@ function renderAt(path) {
 }
 
 describe('App', () => {
-  it('renderiza a home na rota /', () => {
+  it('abre na tela de login', () => {
     renderAt('/')
 
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Kauê')
+    expect(screen.getByRole('heading', { level: 1, name: 'hello, friend.' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /acessar como convidado/i })).toBeInTheDocument()
   })
 
-  it('mostra as seções da home e os links de contato', () => {
+  it('deixa o visitante entrar como convidado e navegar pelo menu', async () => {
     renderAt('/')
 
-    expect(screen.getByRole('region', { name: '> cat ~/.plan' })).toBeInTheDocument()
-    // a varredura nmap tem uma versão em texto para leitores de tela
-    expect(screen.getByText('Resultado da varredura em kaue.dev:')).toBeInTheDocument()
-    expect(
-      screen.getByText(/React · Tailwind — interfaces web \(uso em projetos\)/),
-    ).toBeInTheDocument()
+    await userEvent.click(screen.getByRole('button', { name: /acessar como convidado/i }))
 
-    for (const name of ['LinkedIn', 'GitHub', 'Instagram']) {
-      expect(screen.getByRole('link', { name })).toHaveAttribute('target', '_blank')
-    }
+    expect(await screen.findByRole('heading', { name: 'ACESSO CONCEDIDO' })).toBeInTheDocument()
+    const menu = screen.getByRole('navigation', { name: 'Menu do portfólio' })
+    expect(menu).toHaveTextContent('sobre')
+    expect(menu).toHaveTextContent('projetos')
+  })
+
+  it('abre um link compartilhado direto na página, sem passar pelo login', async () => {
+    renderAt('/sobre')
+
+    expect(await screen.findByRole('region', { name: '> cat ~/.plan' })).toBeInTheDocument()
+    expect(screen.getByText(/criptografia · redes · autenticação/)).toBeInTheDocument()
+    expect(screen.queryByText(/linux/i)).not.toBeInTheDocument()
+  })
+
+  it('valida os campos do login do dono', async () => {
+    renderAt('/')
+    await userEvent.click(screen.getByText('acesso restrito (dono do site)'))
+
+    await userEvent.type(screen.getByLabelText(/login/), 'email-errado')
+    await userEvent.click(screen.getByRole('button', { name: 'entrar' }))
+
+    expect(await screen.findByText(/e-mail inválido/)).toBeInTheDocument()
+    expect(screen.getByText(/senha com no mínimo 6 caracteres/)).toBeInTheDocument()
   })
 
   it('mostra a página 404 em uma rota inexistente', async () => {
@@ -38,6 +55,9 @@ describe('App', () => {
     // a página 404 é carregada sob demanda, por isso o findBy (espera aparecer)
     expect(await screen.findByRole('heading', { name: '404' })).toBeInTheDocument()
     expect(screen.getByText('/rota-que-nao-existe')).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /voltar para a home/i })).toHaveAttribute('href', '/')
+    expect(screen.getByRole('link', { name: /voltar para o início/i })).toHaveAttribute(
+      'href',
+      '/inicio',
+    )
   })
 })
