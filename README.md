@@ -44,13 +44,15 @@ npm run dev
 
 ### Scripts
 
-| Comando           | O que faz                     |
-| ----------------- | ----------------------------- |
-| `npm run dev`     | servidor de desenvolvimento   |
-| `npm run build`   | build de produção             |
-| `npm run preview` | serve o build localmente      |
-| `npm run lint`    | verifica o código com ESLint  |
-| `npm run format`  | formata o código com Prettier |
+| Comando              | O que faz                       |
+| -------------------- | ------------------------------- |
+| `npm run dev`        | servidor de desenvolvimento     |
+| `npm run build`      | build de produção               |
+| `npm run preview`    | serve o build localmente        |
+| `npm run lint`       | verifica o código com ESLint    |
+| `npm run format`     | formata o código com Prettier   |
+| `npm test`           | roda os testes                  |
+| `npm run test:watch` | roda os testes a cada alteração |
 
 ## Estrutura de pastas
 
