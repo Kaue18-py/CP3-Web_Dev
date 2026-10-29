@@ -2,30 +2,31 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Cores do tema: o modo claro fica no :root e o escuro sobrescreve quando o <html> tem .dark */
+/* Paleta fsociety (inspirada em Mr. Robot): verde de terminal + vermelho de alerta.
+   Cores do tema: o modo claro fica no :root e o escuro sobrescreve quando o <html> tem .dark */
 :root {
-  --background: #f5f5fa;
+  --background: #eef2ee;
   --surface: #ffffff;
-  --foreground: #1a1a2e;
-  --muted: #55556e;
-  --primary: #c2185b;
-  --secondary: #00727d;
+  --foreground: #0b1f12;
+  --muted: #4a5f50;
+  --primary: #0a6b2c;
+  --secondary: #b3121a;
   --warning: #8a5a00;
   --danger: #c62828;
-  --line: #d9d9e6;
+  --line: #c9d6cc;
   color-scheme: light;
 }
 
 .dark {
-  --background: #0b0b12;
-  --surface: #14141f;
-  --foreground: #e6e6f0;
-  --muted: #9a9ab3;
-  --primary: #ff2e88;
-  --secondary: #00f0ff;
+  --background: #050805;
+  --surface: #0b140d;
+  --foreground: #c4f5d0;
+  --muted: #6fa07c;
+  --primary: #00ff41;
+  --secondary: #ff3b3b;
   --warning: #ffd400;
   --danger: #ff5c5c;
-  --line: #2a2a3d;
+  --line: #173a22;
   color-scheme: dark;
 }
 
@@ -55,6 +56,11 @@
   }
 }
 
+/* Brilho de fósforo no texto, usado só no tema escuro (dark:text-glow) */
+@utility text-glow {
+  text-shadow: 0 0 10px color-mix(in oklab, currentColor 55%, transparent);
+}
+
 @layer base {
   html {
     font-family: var(--font-mono);
@@ -62,6 +68,20 @@
 
   body {
     @apply bg-background text-foreground antialiased;
+  }
+
+  /* Linhas de monitor CRT por cima do site, só no escuro. Não bloqueiam cliques */
+  .dark body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgb(0 255 65 / 0.035) 0 1px,
+      transparent 1px 3px
+    );
   }
 
   ::selection {
