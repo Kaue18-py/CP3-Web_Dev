@@ -1,0 +1,83 @@
+{
+  "numTotalTestSuites": 2,
+  "numPassedTestSuites": 0,
+  "numFailedTestSuites": 2,
+  "numPendingTestSuites": 0,
+  "numTotalTests": 4,
+  "numPassedTests": 0,
+  "numFailedTests": 1,
+  "numPendingTests": 3,
+  "numTodoTests": 0,
+  "snapshot": {
+    "added": 0,
+    "failure": false,
+    "filesAdded": 0,
+    "filesRemoved": 0,
+    "filesRemovedList": [],
+    "filesUnmatched": 0,
+    "filesUpdated": 0,
+    "matched": 0,
+    "total": 0,
+    "unchecked": 0,
+    "uncheckedKeysByFile": [],
+    "unmatched": 0,
+    "updated": 0,
+    "didUpdate": false
+  },
+  "startTime": 1793290262372,
+  "success": false,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["ContactForm"],
+          "fullName": "ContactForm mostra uma mensagem de erro específica para cada campo",
+          "status": "skipped",
+          "title": "mostra uma mensagem de erro específica para cada campo",
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["ContactForm"],
+          "fullName": "ContactForm recusa e-mail inválido e mensagem curta",
+          "status": "skipped",
+          "title": "recusa e-mail inválido e mensagem curta",
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["ContactForm"],
+          "fullName": "ContactForm bloqueia o botão durante o envio e mostra sucesso no final",
+          "status": "skipped",
+          "title": "bloqueia o botão durante o envio e mostra sucesso no final",
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["ContactForm"],
+          "fullName": "ContactForm mostra erro quando o envio falha",
+          "status": "failed",
+          "title": "mostra erro quando o envio falha",
+          "duration": 1310.0094000000001,
+          "failureMessages": [
+            "Error: falha de rede\n    at C:/Users/Kaue2/OneDrive/Documentos/Estudos/Fiap/Fiap-Trabalhos/CP3-Web_Dev/src/components/contact/ContactForm.test.jsx:69:13\n    at Mock (file:///C:/Users/Kaue2/OneDrive/Documentos/Estudos/Fiap/Fiap-Trabalhos/CP3-Web_Dev/node_modules/vitest/dist/chunks/spy.DDMXghXv.js:353:40)\n    at file:///C:/Users/Kaue2/OneDrive/Documentos/Estudos/Fiap/Fiap-Trabalhos/CP3-Web_Dev/node_modules/vitest/dist/chunks/run.BPv-BBRv.js:3318:20\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///C:/Users/Kaue2/OneDrive/Documentos/Estudos/Fiap/Fiap-Trabalhos/CP3-Web_Dev/node_modules/vitest/dist/chunks/run.BPv-BBRv.js:3276:10)\n    at file:///C:/Users/Kaue2/OneDrive/Documentos/Estudos/Fiap/Fiap-Trabalhos/CP3-Web_Dev/node_modules/vitest/dist/chunks/run.BPv-BBRv.js:3839:35\n    at run (file:///C:/Users/Kaue2/OneDrive/Documentos/Estudos/Fiap/Fiap-Trabalhos/CP3-Web_Dev/node_modules/vitest/dist/chunks/run.BPv-BBRv.js:1352:20)\n    at limiterFn (file:///C:/Users/Kaue2/OneDrive/Documentos/Estudos/Fiap/Fiap-Trabalhos/CP3-Web_Dev/node_modules/vitest/dist/chunks/run.BPv-BBRv.js:1362:59)\n    at callCleanupHooks (file:///C:/Users/Kaue2/OneDrive/Documentos/Estudos/Fiap/Fiap-Trabalhos/CP3-Web_Dev/node_modules/vitest/dist/chunks/run.BPv-BBRv.js:3839:9)\n    at file:///C:/Users/Kaue2/OneDrive/Documentos/Estudos/Fiap/Fiap-Trabalhos/CP3-Web_Dev/node_modules/vitest/dist/chunks/run.BPv-BBRv.js:3921:67"
+          ],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793290264195,
+      "endTime": 1793290265505.0095,
+      "status": "failed",
+      "message": "",
+      "name": "C:/Users/Kaue2/OneDrive/Documentos/Estudos/Fiap/Fiap-Trabalhos/CP3-Web_Dev/src/components/contact/ContactForm.test.jsx"
+    }
+  ]
+}

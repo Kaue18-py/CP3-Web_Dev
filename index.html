@@ -1,10 +1,23 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>portfolio</title>
+    <meta
+      name="description"
+      content="Portfólio de Kauê: desenvolvimento front-end e cibersegurança."
+    />
+    <title>Kauê | Portfólio</title>
+    <!-- Aplica o tema salvo antes do React carregar, para a página não piscar no tema errado -->
+    <script>
+      try {
+        if (localStorage.getItem('theme') !== 'light')
+          document.documentElement.classList.add('dark')
+      } catch {
+        document.documentElement.classList.add('dark')
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

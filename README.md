@@ -1,10 +1,22 @@
 # Portfólio — CP3 Web Dev
 
-Site de portfólio pessoal feito em React. Os projetos são carregados direto da API do GitHub,
-e um dashboard protegido por login mostra as mensagens recebidas pelo formulário de contato e define
-os projetos em destaque na home.
+Portfólio pessoal em React com tema hacker inspirado em Mr. Robot. O site abre numa tela de login:
+o visitante entra como convidado e navega por botões entre as páginas; o dono entra com e-mail e
+senha e acessa um dashboard com as mensagens recebidas.
 
 > 🔗 Site publicado: _em breve_
+
+## Páginas
+
+| Rota        | O que tem                                                            |
+| ----------- | -------------------------------------------------------------------- |
+| `/`         | tela de login: "hello, friend.", log de boot e acesso como convidado |
+| `/inicio`   | "ACESSO CONCEDIDO" e o menu com botões para as outras páginas        |
+| `/sobre`    | bio (`cat ~/.plan`) e habilidades em forma de varredura nmap         |
+| `/projetos` | projetos carregados da API do GitHub                                 |
+| `/contato`  | formulário com validação por campo; a mensagem chega por e-mail      |
+
+Links diretos (ex.: `/contato`) abrem na página certa sem passar pelo login.
 
 ## Tecnologias
 
@@ -42,6 +54,14 @@ npm run dev
 | `VITE_EMAILJS_TEMPLATE_ID` | ID do template de e-mail no EmailJS                   |
 | `VITE_EMAILJS_PUBLIC_KEY`  | chave pública do EmailJS                              |
 
+### Configurando o EmailJS
+
+1. Crie uma conta em [emailjs.com](https://www.emailjs.com/) e conecte seu e-mail em **Email Services**.
+2. Em **Email Templates**, crie um template usando as variáveis `{{name}}`, `{{email}}` e `{{message}}`.
+3. Copie o Service ID, o Template ID e a Public Key (em **Account**) para o `.env`.
+
+Sem essas variáveis o formulário continua validando, mas o envio mostra a mensagem de erro.
+
 ### Scripts
 
 | Comando              | O que faz                       |
@@ -67,6 +87,7 @@ src/
   services/    # acesso às APIs (GitHub, Supabase, EmailJS)
   hooks/       # hooks personalizados que ligam os services aos componentes
   contexts/    # Context providers (tema, autenticação)
+  data/        # conteúdo pessoal do site (bio, stack, links)
   schemas/     # schemas de validação (Zod)
   utils/       # funções auxiliares
   test/        # setup dos testes
@@ -103,7 +124,7 @@ Exemplo: `feat: adiciona validação do formulário de contato`.
 
 ### Verificação automática
 
-- **pre-commit:** lint-staged roda ESLint e Prettier nos arquivos alterados
+- **pre-commit:** lint-staged roda ESLint, Prettier e os testes ligados aos arquivos alterados
 - **commit-msg:** commitlint rejeita mensagens fora do padrão
 
 ## Uso de IA

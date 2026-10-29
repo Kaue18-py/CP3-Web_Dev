@@ -30,6 +30,35 @@ Todas as regras abaixo são obrigatórias.
 
 Não adicionar biblioteca nova sem perguntar antes: cada escolha precisa ser justificada pelo autor.
 
+## Identidade visual
+
+Tema **hacker estilo Mr. Robot, paleta "fsociety"**: verde de terminal + vermelho de alerta.
+Use sempre as cores pelos tokens do tema (definidos em `src/index.css`), nunca cores fixas como
+`text-green-400` ou `#00ff41` no componente.
+
+| Token (classe Tailwind)          | Escuro    | Claro     | Uso                                  |
+| -------------------------------- | --------- | --------- | ------------------------------------ |
+| `background` (`bg-background`)   | `#050805` | `#eef2ee` | fundo da página                      |
+| `surface` (`bg-surface`)         | `#0b140d` | `#ffffff` | cards, painéis, janelas de terminal  |
+| `foreground` (`text-foreground`) | `#c4f5d0` | `#0b1f12` | texto principal                      |
+| `muted` (`text-muted`)           | `#6fa07c` | `#4a5f50` | texto secundário                     |
+| `primary` (`text-primary`)       | `#00ff41` | `#0a6b2c` | verde terminal: destaques, botões    |
+| `secondary` (`text-secondary`)   | `#ff3b3b` | `#b3121a` | vermelho Mr. Robot: detalhes, links  |
+| `warning` (`text-warning`)       | `#ffd400` | `#8a5a00` | avisos                               |
+| `danger` (`text-danger`)         | `#ff5c5c` | `#c62828` | erros (ex.: validação do formulário) |
+| `line` (`border-line`)           | `#173a22` | `#c9d6cc` | bordas                               |
+
+- Todas as combinações de texto passam no contraste WCAG AA (>= 4.5:1). Ao criar cor nova, confira o contraste.
+- Fonte: **JetBrains Mono** (auto-hospedada via `@fontsource-variable/jetbrains-mono`) em todo o site.
+- Linguagem visual de terminal: prompts (`$`, `>`), logs `[ OK ]` / `[ !! ]`, colchetes, cursor `█`,
+  bordas finas, cantos pouco arredondados. No escuro: brilho de fósforo (`dark:text-glow`) e linhas de CRT.
+- Experiência: o site abre numa **tela de login** (`/`). O visitante entra como convidado e navega por
+  botões entre **início, sobre, projetos e contato**; o dono entra com e-mail e senha (Supabase) e vai
+  para o dashboard. Links diretos (ex.: `/projetos/metflix`) abrem sem passar pelo login.
+- O conteúdo do site não copia o README do perfil do GitHub: textos pessoais ficam em `src/data/profile.js`.
+- Toda animação respeita `prefers-reduced-motion` e reserva espaço na tela (sem layout shift).
+  Não adicionar efeitos pesados (glitch, chuva Matrix, 3D) sem pedir.
+
 ## Estrutura de pastas
 
 ```
@@ -43,6 +72,7 @@ src/
   services/    # acesso a APIs externas (GitHub, Supabase, EmailJS). Só funções, sem JSX
   hooks/       # hooks personalizados que ligam services ao React (useRepos, useAuth, useTheme)
   contexts/    # Context providers (ThemeContext, AuthContext)
+  data/        # conteúdo estático do site (bio, foco de estudos, stack, links)
   schemas/     # schemas Zod de validação
   utils/       # funções puras auxiliares (formatDate...)
   test/        # setup global dos testes
@@ -101,9 +131,17 @@ Formato: `<tipo>: <descrição>`, em português, verbo no presente da 3ª pessoa
 
 Exemplos: `feat: adiciona validação do formulário de contato`, `fix: corrige rota 404 ao atualizar a página`.
 
-- Commits pequenos, um assunto por commit.
+- Um commit por funcionalidade completa (código + testes), não um commit por arquivo.
 - O commitlint (hook `commit-msg`) rejeita mensagens fora do padrão.
-- O hook `pre-commit` roda ESLint e Prettier nos arquivos alterados.
+- O hook `pre-commit` roda ESLint, Prettier e os testes relacionados (`vitest related`) aos arquivos alterados.
+
+## Testes
+
+- Teste o comportamento como o usuário vê (Testing Library: `getByRole`, `getByLabelText`), não detalhes internos.
+- Services são substituídos por mocks (`vi.mock`): os testes nunca chamam GitHub, EmailJS ou Supabase de verdade.
+- `beforeEach`/`afterEach` sempre com chaves: `beforeEach(() => { fn() })`. Se a função retornar outra
+  função (ex.: `mockReset()` retorna o mock), o Vitest a executa como limpeza no fim do teste.
+- Páginas lazy aparecem depois de um tempo: use `findBy...` (espera) em vez de `getBy...`.
 
 ## Comandos
 

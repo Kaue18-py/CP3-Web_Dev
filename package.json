@@ -15,10 +15,16 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@emailjs/browser": "^5.0.3",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "@hookform/resolvers": "^6.0.2",
     "@tailwindcss/vite": "^4.3.3",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
-    "tailwindcss": "^4.3.3"
+    "react-hook-form": "^7.91.0",
+    "react-router": "^8.5.1",
+    "tailwindcss": "^4.3.3",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.4",
@@ -46,7 +52,8 @@
   "lint-staged": {
     "*.{js,jsx}": [
       "eslint --fix",
-      "prettier --write"
+      "prettier --write",
+      "vitest related --run"
     ],
     "*.{css,json,md,html}": [
       "prettier --write"
