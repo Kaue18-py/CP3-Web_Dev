@@ -42,7 +42,7 @@ describe('App', () => {
     renderAt('/')
     await userEvent.click(screen.getByText('acesso restrito (dono do site)'))
 
-    await userEvent.type(screen.getByLabelText(/login/), 'email-errado')
+    await userEvent.type(await screen.findByLabelText(/login/), 'email-errado')
     await userEvent.click(screen.getByRole('button', { name: 'entrar' }))
 
     expect(await screen.findByText(/e-mail inválido/)).toBeInTheDocument()
