@@ -51,3 +51,55 @@ npm run dev
 | `npm run preview` | serve o build localmente      |
 | `npm run lint`    | verifica o código com ESLint  |
 | `npm run format`  | formata o código com Prettier |
+
+## Estrutura de pastas
+
+```
+src/
+  components/
+    ui/        # componentes visuais reaproveitados (Button, Card, Input, Skeleton...)
+    layout/    # Header, Footer, Layout
+    <feature>/ # componentes de uma funcionalidade (projects, contact, dashboard)
+  pages/       # uma página por rota
+  routes/      # definição das rotas e rota protegida
+  services/    # acesso às APIs (GitHub, Supabase, EmailJS)
+  hooks/       # hooks personalizados que ligam os services aos componentes
+  contexts/    # Context providers (tema, autenticação)
+  schemas/     # schemas de validação (Zod)
+  utils/       # funções auxiliares
+  test/        # setup dos testes
+```
+
+Os componentes visuais não acessam APIs diretamente. O fluxo de dados é sempre
+`services/` → `hooks/` → componente.
+
+## Padrões do projeto
+
+### Nomenclatura
+
+- Componentes e páginas em **PascalCase** (`ProjectCard.jsx`, `HomePage.jsx`)
+- Hooks começando com **`use`** (`useRepos.js`)
+- Services terminando em **`Service`** (`githubService.js`)
+- Constantes em **UPPER_SNAKE_CASE**
+- Código em inglês; textos da interface, commits e documentação em português
+
+### Branches — GitHub Flow
+
+- `main` sempre estável; cada push nela gera um deploy na Vercel
+- Cada funcionalidade em branch própria: `feature/`, `fix/`, `chore/`, `docs/`, `test/`
+  (ex.: `feature/dashboard`)
+- Integração na `main` por pull request
+
+### Commits — Conventional Commits
+
+```
+<tipo>: <descrição no presente>
+```
+
+Tipos: `feat`, `fix`, `refactor`, `style`, `test`, `docs`, `chore`, `perf`.
+Exemplo: `feat: adiciona validação do formulário de contato`.
+
+### Verificação automática
+
+- **pre-commit:** lint-staged roda ESLint e Prettier nos arquivos alterados
+- **commit-msg:** commitlint rejeita mensagens fora do padrão
