@@ -131,9 +131,17 @@ Formato: `<tipo>: <descrição>`, em português, verbo no presente da 3ª pessoa
 
 Exemplos: `feat: adiciona validação do formulário de contato`, `fix: corrige rota 404 ao atualizar a página`.
 
-- Commits pequenos, um assunto por commit.
+- Um commit por funcionalidade completa (código + testes), não um commit por arquivo.
 - O commitlint (hook `commit-msg`) rejeita mensagens fora do padrão.
 - O hook `pre-commit` roda ESLint, Prettier e os testes relacionados (`vitest related`) aos arquivos alterados.
+
+## Testes
+
+- Teste o comportamento como o usuário vê (Testing Library: `getByRole`, `getByLabelText`), não detalhes internos.
+- Services são substituídos por mocks (`vi.mock`): os testes nunca chamam GitHub, EmailJS ou Supabase de verdade.
+- `beforeEach`/`afterEach` sempre com chaves: `beforeEach(() => { fn() })`. Se a função retornar outra
+  função (ex.: `mockReset()` retorna o mock), o Vitest a executa como limpeza no fim do teste.
+- Páginas lazy aparecem depois de um tempo: use `findBy...` (espera) em vez de `getBy...`.
 
 ## Comandos
 
