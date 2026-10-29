@@ -10,25 +10,27 @@ function nextStep({ index, length, deleting }, phrases) {
   return { index: (index + 1) % phrases.length, length: 0, deleting: false }
 }
 
+// loop: true repete as frases para sempre; false digita até a última frase e para
 export function useTypewriter(
   phrases,
-  { typeSpeed = 70, deleteSpeed = 35, pauseTime = 1800 } = {},
+  { typeSpeed = 70, deleteSpeed = 35, pauseTime = 1800, loop = true } = {},
 ) {
   const [reducedMotion] = useState(prefersReducedMotion)
   const [step, setStep] = useState({ index: 0, length: 0, deleting: false })
 
+  const phrase = phrases[step.index]
+  const isFullPhrase = !step.deleting && step.length === phrase.length
+  const isFinished = !loop && isFullPhrase && step.index === phrases.length - 1
+
   useEffect(() => {
-    if (reducedMotion) return
+    if (reducedMotion || isFinished) return
 
-    const phrase = phrases[step.index]
-    const isFullPhrase = !step.deleting && step.length === phrase.length
     const delay = isFullPhrase ? pauseTime : step.deleting ? deleteSpeed : typeSpeed
-
     const timeout = setTimeout(() => setStep(nextStep(step, phrases)), delay)
     return () => clearTimeout(timeout)
-  }, [step, phrases, reducedMotion, typeSpeed, deleteSpeed, pauseTime])
+  }, [step, phrases, reducedMotion, isFinished, isFullPhrase, typeSpeed, deleteSpeed, pauseTime])
 
-  // Quem prefere menos animação vê a primeira frase inteira, sem digitação
-  if (reducedMotion) return phrases[0]
-  return phrases[step.index].slice(0, step.length)
+  // Quem prefere menos animação vê a frase inteira, sem digitação
+  if (reducedMotion) return { text: phrases[loop ? 0 : phrases.length - 1], isDone: true }
+  return { text: phrase.slice(0, step.length), isDone: isFinished }
 }

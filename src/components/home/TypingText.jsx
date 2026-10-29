@@ -1,7 +1,7 @@
 import { useTypewriter } from '../../hooks/useTypewriter'
 
 export function TypingText({ phrases, className = '' }) {
-  const text = useTypewriter(phrases)
+  const { text } = useTypewriter(phrases)
 
   return (
     <p className={className}>
