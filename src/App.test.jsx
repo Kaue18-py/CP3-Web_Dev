@@ -14,7 +14,7 @@ describe('App', () => {
   it('renderiza a home na rota /', () => {
     renderAt('/')
 
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Kaue')
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Kauê')
   })
 
   it('mostra a página 404 em uma rota inexistente', async () => {
