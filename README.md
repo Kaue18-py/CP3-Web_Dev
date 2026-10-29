@@ -104,7 +104,7 @@ Exemplo: `feat: adiciona validação do formulário de contato`.
 
 ### Verificação automática
 
-- **pre-commit:** lint-staged roda ESLint e Prettier nos arquivos alterados
+- **pre-commit:** lint-staged roda ESLint, Prettier e os testes ligados aos arquivos alterados
 - **commit-msg:** commitlint rejeita mensagens fora do padrão
 
 ## Uso de IA

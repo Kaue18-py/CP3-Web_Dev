@@ -127,7 +127,7 @@ Exemplos: `feat: adiciona validação do formulário de contato`, `fix: corrige 
 
 - Commits pequenos, um assunto por commit.
 - O commitlint (hook `commit-msg`) rejeita mensagens fora do padrão.
-- O hook `pre-commit` roda ESLint e Prettier nos arquivos alterados.
+- O hook `pre-commit` roda ESLint, Prettier e os testes relacionados (`vitest related`) aos arquivos alterados.
 
 ## Comandos
 
