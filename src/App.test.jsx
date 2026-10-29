@@ -1,10 +1,19 @@
 import { render, screen } from '@testing-library/react'
+import { MemoryRouter } from 'react-router'
 import App from './App'
 
-describe('App', () => {
-  it('renderiza o título da página', () => {
-    render(<App />)
+function renderAt(path) {
+  return render(
+    <MemoryRouter initialEntries={[path]}>
+      <App />
+    </MemoryRouter>,
+  )
+}
 
-    expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument()
+describe('App', () => {
+  it('renderiza a home na rota /', () => {
+    renderAt('/')
+
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Kaue')
   })
 })

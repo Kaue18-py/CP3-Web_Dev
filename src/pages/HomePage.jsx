@@ -1,0 +1,13 @@
+export default function HomePage() {
+  return (
+    <section className="mx-auto max-w-4xl px-4 py-16">
+      <p className="text-muted">
+        <span className="text-secondary">kaue@portfolio</span>:~$ whoami
+      </p>
+      <h1 className="mt-2 text-3xl font-bold sm:text-5xl">
+        <span className="text-primary">&gt;</span> Kaue
+      </h1>
+      <p className="text-muted mt-4">Desenvolvedor front-end | cibersegurança</p>
+    </section>
+  )
+}
