@@ -44,6 +44,15 @@
 
 @theme {
   --font-mono: 'JetBrains Mono Variable', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+
+  /* Cursor de terminal: some e aparece de uma vez (step-end), sem transição suave */
+  --animate-blink: blink 1s step-end infinite;
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
 }
 
 @layer base {
