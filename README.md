@@ -103,3 +103,8 @@ Exemplo: `feat: adiciona validação do formulário de contato`.
 
 - **pre-commit:** lint-staged roda ESLint e Prettier nos arquivos alterados
 - **commit-msg:** commitlint rejeita mensagens fora do padrão
+
+## Uso de IA
+
+O projeto foi desenvolvido com apoio do Claude Code. As instruções que a IA segue (stack, arquitetura,
+nomenclatura, branches e commits) ficam versionadas em [`CLAUDE.md`](CLAUDE.md).
