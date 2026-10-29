@@ -112,6 +112,8 @@ npm run dev          # servidor de desenvolvimento
 npm run build        # build de produção
 npm run lint         # ESLint
 npm run format       # Prettier em todo o projeto
+npm test             # testes (Vitest)
+npm run test:watch   # testes em modo observação
 ```
 
 ## Checklist de requisitos do CP3
