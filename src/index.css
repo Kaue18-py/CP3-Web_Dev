@@ -54,6 +54,15 @@
       opacity: 0;
     }
   }
+
+  /* Giro de 360° no eixo vertical (máscara da tela de login). Só mexe em transform: leve para o navegador */
+  --animate-spin-y: spin-y 8s linear infinite;
+
+  @keyframes spin-y {
+    to {
+      transform: rotateY(360deg);
+    }
+  }
 }
 
 /* Brilho de fósforo no texto, usado só no tema escuro (dark:text-glow) */
