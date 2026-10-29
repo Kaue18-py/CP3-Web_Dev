@@ -50,8 +50,12 @@ Tema **terminal hacker, estilo red team / cyberpunk**. Use sempre as cores pelos
 - Todas as combinações de texto passam no contraste WCAG AA (>= 4.5:1). Ao criar cor nova, confira o contraste.
 - Fonte: **JetBrains Mono** (auto-hospedada via `@fontsource-variable/jetbrains-mono`) em todo o site.
 - Linguagem visual de terminal: prompts (`$`, `>`), colchetes, cursor `█`, bordas finas, cantos pouco arredondados.
-- Único efeito animado: **digitação + cursor piscando** no topo da home. Toda animação respeita
-  `prefers-reduced-motion`. Não adicionar efeitos pesados (glitch, chuva Matrix, 3D) sem pedir.
+- Conceito da home: **varredura nmap**. O hero digita `nmap -sV kaue.dev` e revela a saída linha a
+  linha (`useTypewriter` + `useStaggeredReveal`). Portas `open` = tecnologias usadas em projetos,
+  `filtered` = em estudo; os projetos do GitHub aparecem como "alvos encontrados".
+- O conteúdo do site não copia o README do perfil do GitHub: textos pessoais ficam em `src/data/profile.js`.
+- Toda animação respeita `prefers-reduced-motion` e reserva espaço na tela (sem layout shift).
+  Não adicionar efeitos pesados (glitch, chuva Matrix, 3D) sem pedir.
 
 ## Estrutura de pastas
 
