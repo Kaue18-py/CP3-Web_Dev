@@ -84,7 +84,12 @@ src/
   O fluxo é sempre: `services/` → `hooks/` → componente.
 - Componentes pequenos: se um componente passa de ~150 linhas ou faz mais de uma coisa, divida.
 - Reaproveite `components/ui/` antes de criar um botão, card ou input novo.
-- Todo dado vindo de API precisa tratar os estados de **carregamento**, **erro** e **lista vazia**.
+- Todo dado vindo de API precisa tratar os estados de **carregamento**, **erro** e **lista vazia**
+  (componentes prontos: `Skeleton`, `ErrorState`, `EmptyState` em `components/ui/`).
+- Projetos: **nunca** escrever lista de repositórios no código. A seleção vem das topics do GitHub
+  (`portfolio` = aparece; `em-desenvolvimento` = selo amarelo), lidas em `services/githubService.js`.
+- Dados de API passam pelo TanStack Query (`hooks/`), com uma `queryKey` estável, para reaproveitar
+  o cache entre páginas e não repetir requisições.
 - Imagens: WebP/AVIF, `loading="lazy"`, `width`/`height` definidos (evita layout shift).
 - Dashboard e qualquer parte pesada são carregados com `React.lazy`, fora do bundle inicial.
 

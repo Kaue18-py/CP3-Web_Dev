@@ -8,15 +8,30 @@ senha e acessa um dashboard com as mensagens recebidas.
 
 ## Páginas
 
-| Rota        | O que tem                                                            |
-| ----------- | -------------------------------------------------------------------- |
-| `/`         | tela de login: "hello, friend.", log de boot e acesso como convidado |
-| `/inicio`   | "ACESSO CONCEDIDO" e o menu com botões para as outras páginas        |
-| `/sobre`    | bio (`cat ~/.plan`) e habilidades em forma de varredura nmap         |
-| `/projetos` | projetos carregados da API do GitHub                                 |
-| `/contato`  | formulário com validação por campo; a mensagem chega por e-mail      |
+| Rota              | O que tem                                                            |
+| ----------------- | -------------------------------------------------------------------- |
+| `/`               | tela de login: "hello, friend.", log de boot e acesso como convidado |
+| `/inicio`         | "ACESSO CONCEDIDO" e o menu com botões para as outras páginas        |
+| `/sobre`          | bio (`cat ~/.plan`) e habilidades em forma de varredura nmap         |
+| `/projetos`       | projetos carregados da API do GitHub                                 |
+| `/projetos/:slug` | dados do projeto e o README do repositório                           |
+| `/contato`        | formulário com validação por campo; a mensagem chega por e-mail      |
 
 Links diretos (ex.: `/contato`) abrem na página certa sem passar pelo login.
+
+## Como os projetos são escolhidos
+
+Nenhum projeto é cadastrado no código: tudo vem da API do GitHub. A seleção é feita com
+**topics** (etiquetas) nos próprios repositórios:
+
+| Topic                | Efeito no site                               |
+| -------------------- | -------------------------------------------- |
+| `portfolio`          | o repositório aparece em `/projetos`         |
+| `em-desenvolvimento` | o card ganha o selo `[ EM DESENVOLVIMENTO ]` |
+
+Para adicionar ou remover um projeto, basta mudar as topics no GitHub (⚙️ ao lado de **About**).
+As respostas ficam 10 minutos em cache (TanStack Query), e o limite da API sem login
+(60 requisições por hora) é tratado com uma mensagem e um botão de tentar de novo.
 
 ## Tecnologias
 
@@ -45,14 +60,14 @@ npm run dev
 
 ### Variáveis de ambiente
 
-| Variável                   | Descrição                                             |
-| -------------------------- | ----------------------------------------------------- |
-| `VITE_GITHUB_USERNAME`     | usuário do GitHub cujos repositórios aparecem no site |
-| `VITE_SUPABASE_URL`        | URL do projeto no Supabase                            |
-| `VITE_SUPABASE_ANON_KEY`   | chave pública (anon) do Supabase                      |
-| `VITE_EMAILJS_SERVICE_ID`  | ID do serviço de e-mail no EmailJS                    |
-| `VITE_EMAILJS_TEMPLATE_ID` | ID do template de e-mail no EmailJS                   |
-| `VITE_EMAILJS_PUBLIC_KEY`  | chave pública do EmailJS                              |
+| Variável                   | Descrição                                                                   |
+| -------------------------- | --------------------------------------------------------------------------- |
+| `VITE_GITHUB_USERNAME`     | usuário do GitHub cujos repositórios aparecem no site (padrão: `Kaue18-py`) |
+| `VITE_SUPABASE_URL`        | URL do projeto no Supabase                                                  |
+| `VITE_SUPABASE_ANON_KEY`   | chave pública (anon) do Supabase                                            |
+| `VITE_EMAILJS_SERVICE_ID`  | ID do serviço de e-mail no EmailJS                                          |
+| `VITE_EMAILJS_TEMPLATE_ID` | ID do template de e-mail no EmailJS                                         |
+| `VITE_EMAILJS_PUBLIC_KEY`  | chave pública do EmailJS                                                    |
 
 ### Configurando o EmailJS
 
