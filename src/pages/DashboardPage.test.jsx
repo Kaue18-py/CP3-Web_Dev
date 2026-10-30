@@ -2,6 +2,8 @@ import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import App from '../App'
 import { getCurrentSession } from '../services/authService'
+import { fetchFeaturedSlugs, setProjectFeatured } from '../services/featuredService'
+import { fetchPortfolioProjects } from '../services/githubService'
 import { fetchMessages, setMessageAnswered } from '../services/messagesService'
 import { renderWithProviders } from '../test/renderWithProviders'
 
@@ -15,6 +17,26 @@ vi.mock('../services/messagesService', () => ({
   fetchMessages: vi.fn(),
   setMessageAnswered: vi.fn(),
 }))
+// o dashboard também lista os projetos (GitHub) e os destaques (Supabase): tudo falso nos testes
+vi.mock('../services/githubService', async (importOriginal) => ({
+  ...(await importOriginal()),
+  fetchPortfolioProjects: vi.fn(),
+}))
+vi.mock('../services/featuredService', () => ({
+  fetchFeaturedSlugs: vi.fn(),
+  setProjectFeatured: vi.fn(),
+}))
+
+const PROJECTS = [
+  {
+    name: 'Bot-Discord',
+    slug: 'bot-discord',
+    description: 'Bot',
+    language: 'Python',
+    updatedAt: '2026-10-20T12:00:00Z',
+    inDevelopment: true,
+  },
+]
 
 const MESSAGES = [
   {
@@ -32,6 +54,9 @@ describe('DashboardPage', () => {
     vi.mocked(getCurrentSession).mockReset()
     vi.mocked(fetchMessages).mockReset()
     vi.mocked(setMessageAnswered).mockReset()
+    vi.mocked(setProjectFeatured).mockReset()
+    vi.mocked(fetchPortfolioProjects).mockResolvedValue(PROJECTS)
+    vi.mocked(fetchFeaturedSlugs).mockResolvedValue([])
   })
 
   it('bloqueia o dashboard e manda para o login quando não há sessão', async () => {
@@ -69,5 +94,18 @@ describe('DashboardPage', () => {
     await userEvent.click(button)
 
     await waitFor(() => expect(setMessageAnswered).toHaveBeenCalledWith('11111111-aaaa', true))
+  })
+
+  it('coloca um projeto em destaque', async () => {
+    vi.mocked(getCurrentSession).mockResolvedValue({ user: { email: 'kaue@redteam.dev' } })
+    vi.mocked(fetchMessages).mockResolvedValue([])
+    vi.mocked(setProjectFeatured).mockResolvedValue(undefined)
+
+    renderWithProviders(<App />, { route: '/dashboard' })
+
+    const button = await screen.findByRole('button', { name: 'Colocar Bot-Discord em destaque' })
+    await userEvent.click(button)
+
+    await waitFor(() => expect(setProjectFeatured).toHaveBeenCalledWith('bot-discord', true))
   })
 })

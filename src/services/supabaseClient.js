@@ -9,6 +9,11 @@ export const isSupabaseConfigured = Boolean(url && anonKey)
 
 export const supabase = isSupabaseConfigured ? createClient(url, anonKey) : null
 
+// Cliente ou null: para quem consegue seguir sem Supabase (ex.: destaques na página pública)
+export function getSupabase() {
+  return supabase
+}
+
 export function requireSupabase() {
   if (!supabase) {
     throw new Error(

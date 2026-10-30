@@ -3,6 +3,12 @@ import userEvent from '@testing-library/user-event'
 import App from './App'
 import { renderWithProviders } from './test/renderWithProviders'
 
+// a página inicial mostra os destaques, que usam a lista de projetos: nada de chamar o GitHub de verdade
+vi.mock('./services/githubService', async (importOriginal) => ({
+  ...(await importOriginal()),
+  fetchPortfolioProjects: vi.fn(async () => []),
+}))
+
 function renderAt(path) {
   return renderWithProviders(<App />, { route: path })
 }

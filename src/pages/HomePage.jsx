@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import { FeaturedProjects } from '../components/home/FeaturedProjects'
 import { Card } from '../components/ui/Card'
 import { MENU_ITEMS } from '../data/navigation'
 import { PROFILE } from '../data/profile'
@@ -36,6 +37,8 @@ export default function HomePage() {
           ))}
         </ul>
       </nav>
+
+      <FeaturedProjects />
     </section>
   )
 }
