@@ -2,6 +2,8 @@ export const PROFILE = {
   name: 'Kauê',
   fullName: 'Kauê H.G de Barros',
   username: 'kaue',
+  // aparece nos prompts do terminal: kaue@redteam
+  host: 'redteam',
   role: 'Engenharia de Software · FIAP',
   tagline:
     'Construo interfaces em React e APIs em Python, e estudo segurança ofensiva para entender como os sistemas quebram — e como evitar que quebrem.',

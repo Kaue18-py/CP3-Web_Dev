@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router'
+import { PROFILE } from '../data/profile'
 
 export default function NotFoundPage() {
   const { pathname } = useLocation()
@@ -6,7 +7,10 @@ export default function NotFoundPage() {
   return (
     <section className="mx-auto max-w-5xl px-4 py-16">
       <p className="text-muted">
-        <span className="text-secondary">kaue@fsociety</span>:~$ cd {pathname}
+        <span className="text-secondary">
+          {PROFILE.username}@{PROFILE.host}
+        </span>
+        :~$ cd {pathname}
       </p>
       <h1 className="mt-2 text-3xl font-bold text-danger sm:text-5xl">404</h1>
       <p className="mt-4">

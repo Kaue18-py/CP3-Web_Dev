@@ -1,25 +1,35 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router'
+import { useAuth } from '../../hooks/useAuth'
 import { loginSchema } from '../../schemas/loginSchema'
 import { Button } from '../ui/Button'
 import { Input } from '../ui/Input'
 
-// Login do dono do site. A autenticação de verdade (Supabase) entra junto com o dashboard.
+// Login do dono do site: autentica no Supabase e, dando certo, vai para o dashboard
 export function OwnerLoginForm() {
-  const [status, setStatus] = useState(null)
+  const { login } = useAuth()
+  const navigate = useNavigate()
+  const [errorMessage, setErrorMessage] = useState(null)
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm({ resolver: zodResolver(loginSchema) })
 
-  async function onSubmit() {
-    setStatus('módulo de autenticação ainda não configurado')
-  }
+  const onSubmit = handleSubmit(async ({ email, password }) => {
+    setErrorMessage(null)
+    try {
+      await login(email, password)
+      navigate('/dashboard')
+    } catch (error) {
+      setErrorMessage(error.message)
+    }
+  })
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-4 space-y-4">
+    <form onSubmit={onSubmit} noValidate className="mt-4 space-y-4">
       <Input
         id="login-email"
         label="login"
@@ -38,11 +48,11 @@ export function OwnerLoginForm() {
         {...register('password')}
       />
       <Button type="submit" variant="secondary" isLoading={isSubmitting} className="w-full">
-        entrar
+        {isSubmitting ? 'entrando...' : 'entrar'}
       </Button>
-      {status && (
-        <p role="status" className="text-sm text-warning">
-          [ !! ] {status}
+      {errorMessage && (
+        <p role="alert" className="text-sm text-danger">
+          [ !! ] {errorMessage}
         </p>
       )}
     </form>

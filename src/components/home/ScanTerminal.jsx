@@ -27,7 +27,7 @@ export function ScanTerminal() {
   const reveal = (line) => (line < visibleLines ? '' : 'invisible')
 
   return (
-    <Card as="div" title={`${PROFILE.username}@portfolio: ~`} className="text-xs sm:text-sm">
+    <Card as="div" title={`${PROFILE.username}@${PROFILE.host}: ~`} className="text-xs sm:text-sm">
       <div aria-hidden="true">
         <p>
           <span className="text-secondary">$</span> {text}

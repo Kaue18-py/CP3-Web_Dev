@@ -6,6 +6,7 @@ import { BootLog } from '../components/login/BootLog'
 import { Greeting } from '../components/login/Greeting'
 import { Button } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
+import { PROFILE } from '../data/profile'
 
 // O formulário do dono traz React Hook Form + Zod; quase nenhum visitante abre,
 // então ele só é baixado quando alguém clica em "acesso restrito"
@@ -29,7 +30,11 @@ export default function LoginPage() {
         <div className="w-full max-w-lg">
           <Greeting />
 
-          <Card as="section" title="fsociety@kaue: ~/login" className="mt-6">
+          <Card
+            as="section"
+            title={`${PROFILE.username}@${PROFILE.host}: ~/login`}
+            className="mt-6"
+          >
             <BootLog />
 
             <Button className="mt-6 w-full" onClick={() => navigate('/inicio')}>

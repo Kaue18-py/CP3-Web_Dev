@@ -1,3 +1,4 @@
+import { PROFILE } from '../../data/profile'
 import { formatDate } from '../../utils/formatDate'
 import { ButtonLink } from '../ui/ButtonLink'
 import { StatusBadge } from './StatusBadge'
@@ -6,8 +7,10 @@ export function ProjectDetails({ project }) {
   return (
     <header>
       <p className="text-sm text-muted">
-        <span className="text-secondary">kaue@fsociety</span>:~/projetos/{project.slug}$ cat
-        relatorio.md
+        <span className="text-secondary">
+          {PROFILE.username}@{PROFILE.host}
+        </span>
+        :~/projetos/{project.slug}$ cat relatorio.md
       </p>
       <div className="mt-2 flex flex-wrap items-center gap-3">
         <h1 className="text-3xl font-bold break-all sm:text-4xl">
