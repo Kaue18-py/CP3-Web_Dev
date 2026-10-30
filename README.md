@@ -11,13 +11,15 @@ senha e acessa um dashboard com as mensagens recebidas.
 | Rota              | O que tem                                                            |
 | ----------------- | -------------------------------------------------------------------- |
 | `/`               | tela de login: "hello, friend.", log de boot e acesso como convidado |
-| `/inicio`         | "ACESSO CONCEDIDO" e o menu com botões para as outras páginas        |
+| `/inicio`         | "ACESSO CONCEDIDO", o menu com botões e os projetos em destaque      |
 | `/sobre`          | bio (`cat ~/.plan`) e habilidades em forma de varredura nmap         |
 | `/projetos`       | projetos carregados da API do GitHub                                 |
 | `/projetos/:slug` | dados do projeto e o README do repositório                           |
 | `/contato`        | formulário com validação por campo; a mensagem chega por e-mail      |
+| `/dashboard`      | área do dono (precisa de login): mensagens e projetos em destaque    |
 
-Links diretos (ex.: `/contato`) abrem na página certa sem passar pelo login.
+Links diretos (ex.: `/contato`) abrem na página certa sem passar pelo login. O `/dashboard` é a
+exceção: sem login, o visitante é mandado de volta para a tela de login.
 
 ## Como os projetos são escolhidos
 
@@ -64,7 +66,7 @@ npm run dev
 | -------------------------- | --------------------------------------------------------------------------- |
 | `VITE_GITHUB_USERNAME`     | usuário do GitHub cujos repositórios aparecem no site (padrão: `Kaue18-py`) |
 | `VITE_SUPABASE_URL`        | URL do projeto no Supabase                                                  |
-| `VITE_SUPABASE_ANON_KEY`   | chave pública (anon) do Supabase                                            |
+| `VITE_SUPABASE_ANON_KEY`   | chave pública do Supabase (Publishable key `sb_publishable_...` ou anon)    |
 | `VITE_EMAILJS_SERVICE_ID`  | ID do serviço de e-mail no EmailJS                                          |
 | `VITE_EMAILJS_TEMPLATE_ID` | ID do template de e-mail no EmailJS                                         |
 | `VITE_EMAILJS_PUBLIC_KEY`  | chave pública do EmailJS                                                    |
@@ -76,6 +78,19 @@ npm run dev
 3. Copie o Service ID, o Template ID e a Public Key (em **Account**) para o `.env`.
 
 Sem essas variáveis o formulário continua validando, mas o envio mostra a mensagem de erro.
+
+### Configurando o Supabase
+
+1. Crie um projeto em [supabase.com](https://supabase.com/).
+2. Em **SQL Editor**, rode o arquivo [`supabase/schema.sql`](supabase/schema.sql): ele cria as tabelas
+   `messages` e `featured_projects` com as regras de segurança (RLS).
+3. Em **Authentication → Users → Add user**, crie o usuário do dono (e-mail e senha do dashboard).
+4. Em **Project Settings → API Keys**, copie a URL do projeto e a Publishable key para o `.env`.
+
+| Tabela              | Quem pode o quê                                                       |
+| ------------------- | --------------------------------------------------------------------- |
+| `messages`          | qualquer visitante envia; só o dono logado lê e marca como respondida |
+| `featured_projects` | qualquer visitante lê; só o dono logado marca e desmarca destaques    |
 
 ### Scripts
 

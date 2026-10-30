@@ -93,6 +93,16 @@ src/
 - Imagens: WebP/AVIF, `loading="lazy"`, `width`/`height` definidos (evita layout shift).
 - Dashboard e qualquer parte pesada são carregados com `React.lazy`, fora do bundle inicial.
 
+## Banco de dados (Supabase)
+
+- A estrutura do banco fica versionada em `supabase/schema.sql`. Toda tabela ou regra nova entra
+  nesse arquivo (que pode rodar mais de uma vez) e no README; nunca só no painel do Supabase.
+- Toda tabela tem RLS ligado. Visitante (`anon`) só faz o mínimo (enviar mensagem, ler destaques);
+  ler mensagens e alterar destaques exige usuário logado (`authenticated`).
+- No front só vai a chave pública (Publishable/anon). A `service_role`/secret **nunca** entra no código.
+- Rotas do dono ficam dentro de `<ProtectedRoute>` (redireciona para `/` sem login).
+- Nos testes o Supabase fica desligado (`test.env` no `vite.config.js`) e os services são mockados.
+
 ## Convenções de nomenclatura
 
 | Item                  | Padrão                                       | Exemplo                           |
