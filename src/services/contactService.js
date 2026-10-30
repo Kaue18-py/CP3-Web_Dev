@@ -1,7 +1,8 @@
 import { sendContactEmail } from './emailService'
+import { saveMessage } from './messagesService'
 
-// Ponto único de envio do formulário de contato.
-// Próxima etapa: além do e-mail, gravar a mensagem no Supabase para aparecer no dashboard.
+// Envio do formulário de contato: avisa o dono por e-mail (EmailJS) E guarda a mensagem
+// no banco (Supabase) para aparecer no dashboard. Os dois acontecem juntos.
 export async function sendContactMessage(data) {
-  await sendContactEmail(data)
+  await Promise.all([sendContactEmail(data), saveMessage(data)])
 }
