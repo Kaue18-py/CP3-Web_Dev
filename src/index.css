@@ -97,3 +97,77 @@
     @apply bg-primary text-background;
   }
 }
+
+/* README dos projetos: o HTML vem pronto da API do GitHub, então o estilo é aplicado por tags */
+@layer components {
+  .readme {
+    @apply leading-relaxed break-words;
+  }
+  /* O GitHub embrulha o conteúdo em <article> e cada título numa <div class="markdown-heading">,
+     então o espaçamento é dado em cada bloco, e não com space-y no container */
+  .readme :where(p, ul, ol, pre, table, blockquote, hr, .highlight, .snippet-clipboard-content) {
+    @apply mt-4;
+  }
+  .readme .markdown-heading {
+    @apply mt-10 mb-3;
+  }
+  .readme article > :first-child {
+    @apply mt-0;
+  }
+  .readme .anchor {
+    @apply hidden; /* ícones de link que o GitHub coloca ao lado dos títulos */
+  }
+  .readme h1,
+  .readme h2,
+  .readme h3 {
+    @apply font-bold text-primary;
+  }
+  .readme h1 {
+    @apply text-2xl;
+  }
+  .readme h2 {
+    @apply text-xl;
+  }
+  .readme h2::before {
+    @apply text-muted;
+    content: '## ';
+  }
+  .readme h3 {
+    @apply text-lg;
+  }
+  .readme h3::before {
+    @apply text-muted;
+    content: '### ';
+  }
+  .readme a {
+    @apply text-secondary underline underline-offset-4;
+  }
+  .readme ul {
+    @apply list-inside list-disc space-y-1;
+  }
+  .readme ol {
+    @apply list-inside list-decimal space-y-1;
+  }
+  .readme :not(pre) > code {
+    @apply rounded-sm border border-line bg-background px-1 text-sm;
+  }
+  .readme pre {
+    @apply overflow-x-auto rounded-sm border border-line bg-background p-3 text-sm;
+  }
+  .readme table {
+    @apply block overflow-x-auto text-sm;
+  }
+  .readme th,
+  .readme td {
+    @apply border border-line px-3 py-1 text-left;
+  }
+  .readme blockquote {
+    @apply border-l-2 border-primary pl-4 text-muted;
+  }
+  .readme img {
+    @apply inline-block h-auto max-w-full;
+  }
+  .readme hr {
+    @apply border-line;
+  }
+}

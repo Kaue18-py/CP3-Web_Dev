@@ -23,5 +23,7 @@ export default defineConfig([
   {
     files: ['**/*.test.{js,jsx}', 'src/test/**'],
     languageOptions: { globals: globals.vitest },
+    // arquivos de teste exportam funções auxiliares, não componentes
+    rules: { 'react-refresh/only-export-components': 'off' },
   },
 ])
