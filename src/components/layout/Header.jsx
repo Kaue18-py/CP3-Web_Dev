@@ -17,7 +17,7 @@ export function Header() {
         <Link to="/inicio" className="text-sm font-semibold" aria-label="Ir para o início">
           <span className="text-primary">{PROFILE.username}</span>
           <span className="text-muted">@</span>
-          <span className="text-secondary">fsociety</span>
+          <span className="text-secondary">{PROFILE.host}</span>
           <span className="text-muted">:~$</span>
         </Link>
 

@@ -48,7 +48,7 @@ describe('DashboardPage', () => {
   })
 
   it('mostra as mensagens quando o dono está logado', async () => {
-    vi.mocked(getCurrentSession).mockResolvedValue({ user: { email: 'kaue@fsociety.dev' } })
+    vi.mocked(getCurrentSession).mockResolvedValue({ user: { email: 'kaue@redteam.dev' } })
     vi.mocked(fetchMessages).mockResolvedValue(MESSAGES)
 
     renderWithProviders(<App />, { route: '/dashboard' })
@@ -59,7 +59,7 @@ describe('DashboardPage', () => {
   })
 
   it('marca uma mensagem como respondida', async () => {
-    vi.mocked(getCurrentSession).mockResolvedValue({ user: { email: 'kaue@fsociety.dev' } })
+    vi.mocked(getCurrentSession).mockResolvedValue({ user: { email: 'kaue@redteam.dev' } })
     vi.mocked(fetchMessages).mockResolvedValue(MESSAGES)
     vi.mocked(setMessageAnswered).mockResolvedValue(undefined)
 
