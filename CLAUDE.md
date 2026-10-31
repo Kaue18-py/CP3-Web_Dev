@@ -119,6 +119,8 @@ src/
 - Um componente por arquivo. Páginas usam `export default` (necessário para `React.lazy`);
   o restante usa export nomeado.
 - Código (variáveis, funções) em inglês; textos da interface, commits e documentação em português.
+- Comentários só quando explicam o **porquê** (uma decisão, uma regra de segurança, uma pegadinha).
+  Nada de comentário que repete o nome ou o que o código já diz (ex.: "Tela de erro" em cima do `ErrorState`).
 
 ## Branches (GitHub Flow)
 
