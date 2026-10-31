@@ -22,5 +22,4 @@ export const NAV_ITEMS = [
   },
 ]
 
-// Na página inicial o menu mostra todas as páginas, menos a própria
 export const MENU_ITEMS = NAV_ITEMS.filter((item) => item.to !== '/inicio')

@@ -7,7 +7,6 @@ import { loginSchema } from '../../schemas/loginSchema'
 import { Button } from '../ui/Button'
 import { Input } from '../ui/Input'
 
-// Login do dono do site: autentica no Supabase e, dando certo, vai para o dashboard
 export function OwnerLoginForm() {
   const { login } = useAuth()
   const navigate = useNavigate()

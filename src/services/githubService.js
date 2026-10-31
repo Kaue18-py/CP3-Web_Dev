@@ -57,7 +57,6 @@ function toProject(repo) {
   }
 }
 
-// Projetos do portfólio: repositórios próprios (não forks) com a etiqueta "portfolio"
 export async function fetchPortfolioProjects() {
   const response = await request(`/users/${GITHUB_USERNAME}/repos?per_page=100&sort=pushed`)
   const repos = await response.json()
@@ -79,7 +78,6 @@ export async function fetchProjectReadme(name) {
   }
 }
 
-// Mensagem amigável para mostrar na tela quando a API falha
 export function describeGithubError(error) {
   if (error?.isRateLimit) {
     const time = error.resetAt?.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })

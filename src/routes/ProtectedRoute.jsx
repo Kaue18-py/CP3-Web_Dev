@@ -1,7 +1,6 @@
 import { Navigate, Outlet } from 'react-router'
 import { useAuth } from '../hooks/useAuth'
 
-// Rota protegida: só deixa passar quem está logado. Quem não está é mandado para o login.
 export function ProtectedRoute() {
   const { isAuthenticated, isLoading } = useAuth()
 

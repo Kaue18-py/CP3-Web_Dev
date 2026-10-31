@@ -1,4 +1,3 @@
-// Bloco cinza pulsante que ocupa o lugar do conteúdo enquanto ele carrega
 export function Skeleton({ className = '' }) {
   return (
     <div

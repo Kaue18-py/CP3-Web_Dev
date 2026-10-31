@@ -1,5 +1,4 @@
 import { PROFILE } from '../../data/profile'
-// Título das páginas internas: mostra o "caminho" atual e o título como um comando
 export function PageHeader({ path, title, children }) {
   return (
     <header className="mx-auto max-w-5xl px-4 pt-12">

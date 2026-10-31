@@ -1,6 +1,5 @@
 import { Card } from './Card'
 
-// Tela para quando a API responde, mas não tem nada para mostrar
 export function EmptyState({ title, children }) {
   return (
     <Card title="resultado: 0">

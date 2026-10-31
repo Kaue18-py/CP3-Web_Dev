@@ -1,4 +1,3 @@
-// Campo de formulário com label e mensagem de erro. multiline troca o input por um textarea.
 // No React 19 o `ref` chega como prop comum, então o register() do React Hook Form funciona direto.
 export function Input({ id, label, error, multiline = false, className = '', ...props }) {
   const Field = multiline ? 'textarea' : 'input'
