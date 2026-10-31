@@ -13,15 +13,21 @@ export function Layout() {
         Pular para o conteúdo
       </a>
       <Header />
-      <main id="conteudo" className="flex-1">
-        {/* Header e Footer continuam na tela enquanto uma página lazy carrega */}
-        <Suspense
-          fallback={<p className="mx-auto max-w-5xl px-4 py-16 text-muted">carregando...</p>}
-        >
+      {/* Enquanto uma página lazy carrega, só o Header fica na tela. O Footer entra junto com o
+          conteúdo: se ele aparecesse antes, seria empurrado para baixo quando a página chegasse
+          (salto de layout medido no Lighthouse: CLS 0,18) */}
+      <Suspense
+        fallback={
+          <main id="conteudo" className="flex-1">
+            <p className="mx-auto max-w-5xl px-4 py-16 text-muted">carregando...</p>
+          </main>
+        }
+      >
+        <main id="conteudo" className="flex-1">
           <Outlet />
-        </Suspense>
-      </main>
-      <Footer />
+        </main>
+        <Footer />
+      </Suspense>
     </div>
   )
 }
