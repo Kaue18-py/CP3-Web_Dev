@@ -4,7 +4,7 @@ Portfólio pessoal em React com tema hacker inspirado em Mr. Robot. O site abre 
 o visitante entra como convidado e navega por botões entre as páginas; o dono entra com e-mail e
 senha e acessa um dashboard com as mensagens recebidas.
 
-> 🔗 Site publicado: _em breve_
+>  Site Publicado: cp-3-web-dev.vercel.app
 
 ## Páginas
 
