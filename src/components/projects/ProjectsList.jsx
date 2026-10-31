@@ -5,7 +5,6 @@ import { ErrorState } from '../ui/ErrorState'
 import { ProjectCard } from './ProjectCard'
 import { ProjectCardSkeleton } from './ProjectCardSkeleton'
 
-// Lista de projetos com os quatro estados: carregando (skeleton), erro, vazio e com dados
 const SKELETON_COUNT = 4
 
 export function ProjectsList() {

@@ -1,6 +1,5 @@
 import { requireSupabase, supabase } from './supabaseClient'
 
-// Traduz as mensagens de erro do Supabase para algo claro em português
 function toFriendlyError(error) {
   if (/invalid login credentials/i.test(error.message)) return 'e-mail ou senha incorretos'
   if (/email not confirmed/i.test(error.message)) return 'e-mail ainda não confirmado'

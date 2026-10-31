@@ -64,7 +64,6 @@ describe('DashboardPage', () => {
 
     renderWithProviders(<App />, { route: '/dashboard' })
 
-    // cai na tela de login
     expect(
       await screen.findByRole('heading', { level: 1, name: 'hello, friend.' }),
     ).toBeInTheDocument()

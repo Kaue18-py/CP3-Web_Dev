@@ -1,7 +1,6 @@
 import { Button } from './Button'
 import { Card } from './Card'
 
-// Tela amigável para quando uma API falha, com botão para tentar de novo
 export function ErrorState({ source, title, description, onRetry }) {
   return (
     <Card title={`erro: ${source}`}>

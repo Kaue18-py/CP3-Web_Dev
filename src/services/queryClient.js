@@ -2,7 +2,6 @@ import { QueryClient } from '@tanstack/react-query'
 
 const TEN_MINUTES = 10 * 60 * 1000
 
-// Cache das respostas de API compartilhado pelo site inteiro
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

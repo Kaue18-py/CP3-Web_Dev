@@ -2,7 +2,6 @@
 -- Rode no painel: SQL Editor > New query > cole este arquivo > Run.
 -- Pode ser executado mais de uma vez: não apaga dados e recria só as regras.
 
--- Mensagens do formulário de contato -------------------------------------------
 create table if not exists public.messages (
   id uuid primary key default gen_random_uuid(),
   name text not null,
@@ -27,7 +26,6 @@ drop policy if exists "so logado atualiza mensagens" on public.messages;
 create policy "so logado atualiza mensagens"
   on public.messages for update to authenticated using (true);
 
--- Projetos em destaque na página inicial ---------------------------------------
 -- Guarda só o slug (nome do repositório em minúsculas); os dados vêm da API do GitHub.
 create table if not exists public.featured_projects (
   slug text primary key,

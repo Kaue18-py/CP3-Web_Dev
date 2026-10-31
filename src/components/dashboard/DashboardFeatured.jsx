@@ -6,7 +6,6 @@ import { EmptyState } from '../ui/EmptyState'
 import { ErrorState } from '../ui/ErrorState'
 import { Skeleton } from '../ui/Skeleton'
 
-// Escolha dos projetos que aparecem em destaque na página inicial
 export function DashboardFeatured() {
   const projects = useProjects()
   const featured = useFeaturedSlugs()

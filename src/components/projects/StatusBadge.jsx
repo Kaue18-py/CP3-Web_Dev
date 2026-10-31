@@ -1,4 +1,3 @@
-// Selo de status do projeto, vindo da etiqueta "em-desenvolvimento" no GitHub
 export function StatusBadge({ inDevelopment }) {
   return (
     <span
