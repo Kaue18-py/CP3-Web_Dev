@@ -22,3 +22,6 @@ dist-ssr
 .env
 .env.*
 !.env.example
+
+# Relatórios gerados pelo Vitest
+.vitest
