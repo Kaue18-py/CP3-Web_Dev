@@ -1,8 +1,8 @@
-import { Link, NavLink } from 'react-router'
+import { Link, NavLink, useNavigate } from 'react-router'
 import { NAV_ITEMS } from '../../data/navigation'
 import { PROFILE } from '../../data/profile'
 import { useAuth } from '../../hooks/useAuth'
-import { ButtonLink } from '../ui/ButtonLink'
+import { Button } from '../ui/Button'
 import { ThemeToggle } from './ThemeToggle'
 
 function navLinkClass({ isActive }) {
@@ -12,7 +12,14 @@ function navLinkClass({ isActive }) {
 }
 
 export function Header() {
-  const { isAuthenticated } = useAuth()
+  const { isAuthenticated, logout } = useAuth()
+  const navigate = useNavigate()
+
+  // sem o logout, o dono voltaria ao login com a sessão ainda aberta no navegador
+  async function handleExit() {
+    if (isAuthenticated) await logout()
+    navigate('/')
+  }
 
   return (
     <header className="sticky top-0 z-10 border-b border-line bg-background/90 backdrop-blur">
@@ -47,9 +54,9 @@ export function Header() {
 
         <div className="flex items-center gap-1">
           <ThemeToggle />
-          <ButtonLink to="/" variant="ghost" className="px-2">
+          <Button variant="ghost" className="px-2" onClick={handleExit}>
             [ sair ]
-          </ButtonLink>
+          </Button>
         </div>
       </div>
     </header>

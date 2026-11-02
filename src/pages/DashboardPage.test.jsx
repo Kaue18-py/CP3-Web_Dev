@@ -1,7 +1,7 @@
 import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import App from '../App'
-import { getCurrentSession } from '../services/authService'
+import { getCurrentSession, signOut } from '../services/authService'
 import { fetchFeaturedSlugs, setProjectFeatured } from '../services/featuredService'
 import { fetchPortfolioProjects } from '../services/githubService'
 import { fetchMessages, setMessageAnswered } from '../services/messagesService'
@@ -52,6 +52,7 @@ const MESSAGES = [
 describe('DashboardPage', () => {
   beforeEach(() => {
     vi.mocked(getCurrentSession).mockReset()
+    vi.mocked(signOut).mockReset()
     vi.mocked(fetchMessages).mockReset()
     vi.mocked(setMessageAnswered).mockReset()
     vi.mocked(setProjectFeatured).mockReset()
@@ -104,6 +105,19 @@ describe('DashboardPage', () => {
     await userEvent.click(await screen.findByRole('link', { name: './dashboard' }))
 
     expect(await screen.findByRole('heading', { name: /dashboard/i })).toBeInTheDocument()
+  })
+
+  it('o [ sair ] do menu desloga o dono e volta para o login', async () => {
+    vi.mocked(getCurrentSession).mockResolvedValue({ user: { email: 'kaue@redteam.dev' } })
+    vi.mocked(fetchMessages).mockResolvedValue(MESSAGES)
+
+    renderWithProviders(<App />, { route: '/dashboard' })
+    await userEvent.click(await screen.findByRole('button', { name: '[ sair ]' }))
+
+    expect(signOut).toHaveBeenCalled()
+    expect(
+      await screen.findByRole('heading', { level: 1, name: 'hello, friend.' }),
+    ).toBeInTheDocument()
   })
 
   it('o visitante não vê o link do dashboard no menu', async () => {
