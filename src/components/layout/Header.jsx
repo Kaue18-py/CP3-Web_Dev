@@ -1,7 +1,8 @@
-import { Link, NavLink } from 'react-router'
+import { Link, NavLink, useNavigate } from 'react-router'
 import { NAV_ITEMS } from '../../data/navigation'
 import { PROFILE } from '../../data/profile'
-import { ButtonLink } from '../ui/ButtonLink'
+import { useAuth } from '../../hooks/useAuth'
+import { Button } from '../ui/Button'
 import { ThemeToggle } from './ThemeToggle'
 
 function navLinkClass({ isActive }) {
@@ -11,6 +12,15 @@ function navLinkClass({ isActive }) {
 }
 
 export function Header() {
+  const { isAuthenticated, logout } = useAuth()
+  const navigate = useNavigate()
+
+  // sem o logout, o dono voltaria ao login com a sessão ainda aberta no navegador
+  async function handleExit() {
+    if (isAuthenticated) await logout()
+    navigate('/')
+  }
+
   return (
     <header className="sticky top-0 z-10 border-b border-line bg-background/90 backdrop-blur">
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3">
@@ -31,14 +41,22 @@ export function Header() {
                 </NavLink>
               </li>
             ))}
+            {/* só o dono logado vê o atalho; a rota continua protegida pelo ProtectedRoute */}
+            {isAuthenticated && (
+              <li>
+                <NavLink to="/dashboard" className={navLinkClass}>
+                  ./dashboard
+                </NavLink>
+              </li>
+            )}
           </ul>
         </nav>
 
         <div className="flex items-center gap-1">
           <ThemeToggle />
-          <ButtonLink to="/" variant="ghost" className="px-2">
+          <Button variant="ghost" className="px-2" onClick={handleExit}>
             [ sair ]
-          </ButtonLink>
+          </Button>
         </div>
       </div>
     </header>
