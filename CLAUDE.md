@@ -11,7 +11,6 @@ Todas as regras abaixo são obrigatórias.
 - **Nunca** fazer `push`, `merge` ou abrir PR sem pedido explícito do autor.
 - **Nunca** versionar `.env`. Toda variável nova entra no `.env.example` (sem valor).
 - **Nunca** usar `--no-verify` para pular os hooks. Se o lint ou o commitlint falharem, corrija a causa.
-- O autor precisa saber explicar todo o código: prefira soluções simples e explique o que fez.
 
 ## Stack
 
@@ -28,7 +27,6 @@ Todas as regras abaixo são obrigatórias.
 | Qualidade    | ESLint + Prettier, Husky + lint-staged + commitlint                                  |
 | Deploy       | Vercel (deploy automático a cada push na `main`; `vercel.json` faz o rewrite da SPA) |
 
-Não adicionar biblioteca nova sem perguntar antes: cada escolha precisa ser justificada pelo autor.
 
 ## Identidade visual
 
