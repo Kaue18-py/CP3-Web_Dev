@@ -95,6 +95,26 @@ describe('DashboardPage', () => {
     await waitFor(() => expect(setMessageAnswered).toHaveBeenCalledWith('11111111-aaaa', true))
   })
 
+  it('o dono logado volta para o dashboard pelo menu', async () => {
+    vi.mocked(getCurrentSession).mockResolvedValue({ user: { email: 'kaue@redteam.dev' } })
+    vi.mocked(fetchMessages).mockResolvedValue(MESSAGES)
+
+    renderWithProviders(<App />, { route: '/dashboard' })
+    await userEvent.click(await screen.findByRole('link', { name: './início' }))
+    await userEvent.click(await screen.findByRole('link', { name: './dashboard' }))
+
+    expect(await screen.findByRole('heading', { name: /dashboard/i })).toBeInTheDocument()
+  })
+
+  it('o visitante não vê o link do dashboard no menu', async () => {
+    vi.mocked(getCurrentSession).mockResolvedValue(null)
+
+    renderWithProviders(<App />, { route: '/inicio' })
+
+    expect(await screen.findByRole('link', { name: './início' })).toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: './dashboard' })).not.toBeInTheDocument()
+  })
+
   it('coloca um projeto em destaque', async () => {
     vi.mocked(getCurrentSession).mockResolvedValue({ user: { email: 'kaue@redteam.dev' } })
     vi.mocked(fetchMessages).mockResolvedValue([])

@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router'
 import { NAV_ITEMS } from '../../data/navigation'
 import { PROFILE } from '../../data/profile'
+import { useAuth } from '../../hooks/useAuth'
 import { ButtonLink } from '../ui/ButtonLink'
 import { ThemeToggle } from './ThemeToggle'
 
@@ -11,6 +12,8 @@ function navLinkClass({ isActive }) {
 }
 
 export function Header() {
+  const { isAuthenticated } = useAuth()
+
   return (
     <header className="sticky top-0 z-10 border-b border-line bg-background/90 backdrop-blur">
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3">
@@ -31,6 +34,14 @@ export function Header() {
                 </NavLink>
               </li>
             ))}
+            {/* só o dono logado vê o atalho; a rota continua protegida pelo ProtectedRoute */}
+            {isAuthenticated && (
+              <li>
+                <NavLink to="/dashboard" className={navLinkClass}>
+                  ./dashboard
+                </NavLink>
+              </li>
+            )}
           </ul>
         </nav>
 
